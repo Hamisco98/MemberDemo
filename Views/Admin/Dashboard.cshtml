@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Member>
+@{ 
+    ViewBag.Title = "Admin Dashborad";
+}
+
+<div class="container">
+
+    <div class="row mt-5">
+        <a asp-controller="Admin" asp-action="Create" class="btn btn-outline-info">Add New Member</a>
+    </div>
+    <div class="table-responsive row mt-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Member ID</th>
+                    <th>Status</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Country</th>
+                    <th>Gender</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var unit in Model)
+                {
+                <tr>
+                    <th scope="row">@unit.ID</th="row">
+                    <td>
+                        @Html.CheckBox("MemberStatus", unit.MemberStatus)
+                    </td>
+                    <td>@unit.FirstName</td>
+                    <td>@unit.LastName</td>
+                    <td>@unit.Country</td>
+                    <td>@unit.Gender</td>
+                    <td>@unit.Notes</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

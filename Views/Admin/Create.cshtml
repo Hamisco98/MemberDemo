@@ -1,0 +1,111 @@
+﻿@model MemberViewModel
+@{ 
+    ViewBag.Title = "Add New Member";
+}
+
+<div class="card m-5">
+    <div class="card-header">
+        Add New Member
+    </div>
+    <div class="card-body">
+        <form enctype="multipart/form-data" asp-controller="Admin" asp-action="Create" method="post" id="MemberForm">
+            <div class="row">
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-6">
+                            <div>
+                                <label asp-for="FirstName" class="font-weight-bolder"></label><br />
+                                <input asp-for="FirstName" style="width:60%;"/><br />
+                                <span asp-validation-for="FirstName"></span>
+                            </div>
+                            <div class="mt-3">
+                                <label asp-for="Country" class="font-weight-bolder"></label><br />
+                                <input asp-for="Country" style="width:60%;"/><br />
+                                <span asp-validation-for="Country"></span>
+                            </div>
+                            <div class="mt-3">
+                                <label asp-for="Gender" class="font-weight-bolder"></label><br />
+
+                                <input asp-for="Gender" class="" type="radio" name="Gender" id="G1" value="Male" />
+                                <label class="" for="G1">Male</label>
+                                <input asp-for="Gender" class="ml-2" type="radio" name="Gender" id="G2" value="Female" />
+                                <label class="" for="G2">Female</label><br />
+                                <span asp-validation-for="Gender"></span>
+                            </div>
+                            <div class="mt-3">
+                                <label asp-for="PhoneNumber" class="font-weight-bolder"></label><br />
+                                <input asp-for="PhoneNumber" style="width:60%;"/><br />
+                                <span asp-validation-for="PhoneNumber"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <label asp-for="LastName" class="font-weight-bolder"></label><br />
+                                <input asp-for="LastName" style="width:60%;"/><br />
+                                <span asp-validation-for="LastName"></span>
+                            </div>
+                            <div class="mt-3">
+                                <label asp-for="City" class="font-weight-bolder"></label><br />
+                                <input asp-for="City" style="width:60%;"/><br />
+                                <span asp-validation-for="City"></span>
+                            </div>
+                            <div class="mt-3">
+                                <label asp-for="DateOFBirth" class="font-weight-bolder"></label><br />
+                                <input type="date" asp-for="DateOFBirth" style="width:60%;"/><br />
+                                <span asp-validation-for="DateOFBirth"></span>
+                            </div>
+                            <div class="mt-3">
+                                <label asp-for="Email" class="font-weight-bolder"></label><br />
+                                <input asp-for="Email" style="width:60%;"/><br />
+                                <span asp-validation-for="Email"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mt-3 ml-3">
+                            <label asp-for="Notes" class="font-weight-bolder"></label><br />
+                            <textarea asp-for="Notes" name="Notes" form="MemberForm" style="width:500%"></textarea>
+                            <span asp-validation-for="Notes"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div  class="mt-3 form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="MemberStatus" />
+                            <label asp-for="MemberStatus"  class="font-weight-bolder form-check-label"></label>
+                            <span asp-validation-for="MemberStatus"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row border border-info ml-5" style="width:20rem; height:20rem">
+                        <img asp-append-version="true" id="PutImge" style="width:20rem; height:20rem"/>
+                    </div>
+                    <br />
+                    <div class="mt-3 row ml-5">
+                        <label asp-for="Photo" class="font-weight-bolder ImageLabel mr-3"></label>
+                        <input asp-for="Photo" class="ImageInput" id="ImageViwe" onchange="PreviewImg(event)"/><br />
+                        <span asp-validation-for="Photo"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mt-3">
+                <div class="ml-3">
+                    <button type="submit" class="btn btn-outline-primary">Save</button>
+                </div>
+                <div class="ml-3">
+                    <a asp-controller="Admin" asp-action="Dashboard" class="btn btn-outline-primary">View All Memebers</a>
+                </div>
+            </div>
+            @section Scripts{ 
+            <script>
+                var PreviewImg = function (event) {
+                    var result = document.getElementById("PutImge");
+                    result.src = URL.createObjectURL(event.target.files[0]);
+                };
+            </script>
+            }
+        </form>
+    </div>
+</div>
